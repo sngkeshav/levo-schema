@@ -2,6 +2,7 @@ package com.levo.schema.controller;
 
 import com.levo.schema.response.MessageResponse;
 import com.levo.schema.response.SchemaResponse;
+import com.levo.schema.response.ValidationResponse;
 import com.levo.schema.service.SchemaService;
 import com.levo.schema.util.Constants;
 import com.levo.schema.util.SchemaValidator;
@@ -305,18 +306,5 @@ public class SchemaController {
 
         MessageResponse response = MessageResponse.success("Schema service is healthy");
         return ResponseEntity.ok(response);
-    }
-
-    /**
-     * Response class for schema validation
-     */
-    @lombok.Data
-    @lombok.Builder
-    @lombok.AllArgsConstructor
-    @lombok.NoArgsConstructor
-    public static class ValidationResponse {
-        private boolean valid;
-        private String message;
-        private java.util.List<String> warnings;
     }
 }
