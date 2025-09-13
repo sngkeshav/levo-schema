@@ -51,6 +51,20 @@ curl -X 'POST' \
   "description": "testing"
 }'
 ```
+
+### Create Service
+```bash
+curl -X 'POST' \
+'http://localhost:8080/api/v1/services' \
+-H 'accept: */*' \
+-H 'Content-Type: application/json' \
+-d '{
+"name": "testing6",
+"description": "testing service",
+"applicationId": 1
+}'
+````
+
 ### Upload Schema -> If the provided application name or service name does not exist, this endpoint automatically creates those entries with the given names.
 ```bash
 curl -X 'POST' \
