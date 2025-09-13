@@ -174,18 +174,6 @@ public class ApplicationService {
     }
 
     /**
-     * Get application entity by name (internal use)
-     *
-     * @param name Application name
-     * @return Application entity
-     */
-    @Transactional(readOnly = true)
-    public Application getApplicationEntityByName(String name) {
-        return applicationRepository.findByNameIgnoreCase(name)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format(Constants.APPLICATION_NOT_FOUND, name)));
-    }
-
-    /**
      * Check if application exists by name
      *
      * @param name Application name

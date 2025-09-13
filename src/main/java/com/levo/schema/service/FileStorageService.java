@@ -83,9 +83,8 @@ public class FileStorageService {
      * Delete schema file
      *
      * @param filePath File path to delete
-     * @return true if file was deleted successfully
      */
-    public boolean deleteSchema(String filePath) {
+    public void deleteSchema(String filePath) {
         try {
             boolean deleted = FileUtils.deleteFile(filePath);
             if (deleted) {
@@ -93,10 +92,8 @@ public class FileStorageService {
             } else {
                 log.warn("Failed to delete schema file: {}", filePath);
             }
-            return deleted;
         } catch (Exception e) {
             log.error("Error deleting schema file: {}", filePath, e);
-            return false;
         }
     }
 
@@ -108,34 +105,5 @@ public class FileStorageService {
      */
     public boolean schemaExists(String filePath) {
         return FileUtils.fileExists(filePath);
-    }
-
-    /**
-     * Get file size
-     *
-     * @param filePath File path
-     * @return File size in bytes
-     */
-    public long getFileSize(String filePath) {
-        return FileUtils.getFileSize(filePath);
-    }
-
-    /**
-     * Generate content hash
-     *
-     * @param content Content to hash
-     * @return SHA-256 hash
-     */
-    public String generateContentHash(String content) {
-        return FileUtils.generateContentHash(content);
-    }
-
-    /**
-     * Get storage base path
-     *
-     * @return Base storage path
-     */
-    public String getBasePath() {
-        return basePath;
     }
 }

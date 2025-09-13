@@ -22,6 +22,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -306,5 +308,27 @@ public class SchemaController {
 
         MessageResponse response = MessageResponse.success("Schema service is healthy");
         return ResponseEntity.ok(response);
+    }
+
+    @Operation(
+            summary = "List version for schemas",
+            description = "List all schemas for an application or service with pagination"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Schemas retrieved successfully")
+    })
+    @GetMapping("/{applicationName}/version")
+    public List<SchemaResponse> getVersionsForSchema(
+            @Parameter(description = "Application name")
+            @PathVariable @NotBlank String applicationName,
+
+            @Parameter(description = "Service name (optional)")
+            @RequestParam(value = "service", required = false) String serviceName
+    ) {
+
+        log.debug("Received request to list schemas - application: {}, service: {}",
+                applicationName, serviceName);
+
+        return schemaService.listSchemaVersions(applicationName, serviceName);
     }
 }

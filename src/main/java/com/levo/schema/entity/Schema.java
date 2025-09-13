@@ -123,19 +123,10 @@ public class Schema {
 
         if (isApplicationLevel()) {
             return application.getName();
-        } else if (service != null) {
+        } else if (isServiceLevel()) {
             return application.getName() + "." + service.getName();
         } else {
             return application.getName() + ".unknown-service";
         }
-    }
-
-    public String getFileName() {
-        if (filePath == null) {
-            return null;
-        }
-
-        int lastSlash = filePath.lastIndexOf('/');
-        return lastSlash >= 0 ? filePath.substring(lastSlash + 1) : filePath;
     }
 }

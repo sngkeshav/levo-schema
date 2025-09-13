@@ -87,7 +87,6 @@ public interface SchemaRepository extends JpaRepository<Schema, Long> {
             FROM Schema s
             JOIN s.application a
             WHERE a.name = :applicationName
-            AND s.serviceId IS NULL
             ORDER BY s.version DESC
         """
     )

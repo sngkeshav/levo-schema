@@ -53,22 +53,6 @@ public class FileUtils {
         }
     }
 
-    public static String toJsonString(Map<String, Object> content) {
-        try {
-            return JSON_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(content);
-        } catch (IOException e) {
-            throw new SchemaValidationException("Failed to convert content to JSON: " + e.getMessage());
-        }
-    }
-
-    public static String toYamlString(Map<String, Object> content) {
-        try {
-            return YAML_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(content);
-        } catch (IOException e) {
-            throw new SchemaValidationException("Failed to convert content to YAML: " + e.getMessage());
-        }
-    }
-
     public static String generateFilePath(String basePath, String applicationName,
                                           String serviceName, Integer version,
                                           Schema.FileFormat format) {
@@ -175,17 +159,6 @@ public class FileUtils {
         } catch (IOException e) {
             return false;
         }
-    }
-
-    public static String getFileExtension(String fileName) {
-        if (StringUtils.isBlank(fileName)) return "";
-
-        int lastDotIndex = fileName.lastIndexOf('.');
-        if (lastDotIndex > 0 && lastDotIndex < fileName.length() - 1) {
-            return fileName.substring(lastDotIndex + 1).toLowerCase();
-        }
-
-        return "";
     }
 
     public static boolean deleteFile(String filePath) {
